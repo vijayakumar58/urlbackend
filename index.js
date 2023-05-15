@@ -22,6 +22,10 @@ app.use(cors({
 
 app.listen(process.env.PORT || 3000)
 
+app.get('/', function(req,res){
+    res.json({message:"Welcome To URL Shortner"})
+})
+
 
 app.get('/allurl', async function(req,res){
     try {
