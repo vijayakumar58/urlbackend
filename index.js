@@ -4,9 +4,12 @@ const bodyparser = require("body-parser")
 const mongoose = require("mongoose")
 const cors = require("cors")
 const dotenv = require("dotenv").config();
-const URL = process.env.DB
+// const URL = process.env.DB
+const pass = process.env.PASS
+// const DB = "myUrlShortner"
 
-mongoose.connect(URL)
+ mongoose.connect(`mongodb+srv://vijayalingam58:${pass}@cluster0.0ttlnkh.mongodb.net/?retryWrites=true&w=majority/myUrlShortner`)
+// const db = connection.db(DB).collection('urlshort')
 
 const {UrlModel} = require("./models/urlshort")
 
@@ -61,6 +64,7 @@ app.post('/create', async function(req,res){
             })
         }
     } catch (error) {
+        console.log(error)
         res.json({
             error,
             message:"Something Went Wrong",
