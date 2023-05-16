@@ -4,14 +4,7 @@ const bodyparser = require("body-parser")
 const mongoose = require("mongoose")
 const cors = require("cors")
 const dotenv = require("dotenv").config();
-// const URL = process.env.DB
-const username = process.env.UNAME
-const pass = process.env.PASS
-const cluster = process.env.CLUSTER
-const database = process.env.DBNAME 
 
-//  mongoose.connect(`mongodb+srv://${username}:${pass}@${cluster}.mongodb.net/${database}?retryWrites=true&w=majority`)
-// const db = connection.db(DB).collection('urlshort')
 mongoose.connect(process.env.DB, { useNewUrlParser: true,useUnifiedTopology: true}  )
 .then(
   (res) =>  {
