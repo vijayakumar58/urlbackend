@@ -10,8 +10,15 @@ const pass = process.env.PASS
 const cluster = process.env.CLUSTER
 const database = process.env.DBNAME 
 
- mongoose.connect(`mongodb+srv://${username}:${pass}@${cluster}.mongodb.net/${database}?retryWrites=true&w=majority`)
+//  mongoose.connect(`mongodb+srv://${username}:${pass}@${cluster}.mongodb.net/${database}?retryWrites=true&w=majority`)
 // const db = connection.db(DB).collection('urlshort')
+mongoose.connect(process.env.DB, { useNewUrlParser: true,useUnifiedTopology: true}  )
+.then(
+  (res) =>  {
+    console.log(`Database is Connected`)
+  },
+  err => { console.log(`Not Connected`) }
+);
 
 const {UrlModel} = require("./models/urlshort")
 
@@ -25,7 +32,9 @@ app.use(cors({
     optionSuccessStatus:200
 }))
 
-app.listen(process.env.PORT || 3000)
+app.listen(process.env.PORT || 3000,()=>{
+    console.log(`${process.env.PORT}`)
+})
 
 app.get('/', function(req,res){
     res.json({message:"Welcome To URL Shortner"})
