@@ -5,10 +5,12 @@ const mongoose = require("mongoose")
 const cors = require("cors")
 const dotenv = require("dotenv").config();
 // const URL = process.env.DB
+const username = process.env.UNAME
 const pass = process.env.PASS
-// const DB = "myUrlShortner"
+const cluster = process.env.CLUSTER
+const database = process.env.DBNAME 
 
- mongoose.connect(`mongodb+srv://vijayalingam58:${pass}@cluster0.0ttlnkh.mongodb.net/?retryWrites=true&w=majority/myUrlShortner`)
+ mongoose.connect(`mongodb+srv://${username}:${pass}@${cluster}.mongodb.net/${database}?retryWrites=true&w=majority`)
 // const db = connection.db(DB).collection('urlshort')
 
 const {UrlModel} = require("./models/urlshort")
